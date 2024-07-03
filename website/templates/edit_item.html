@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Edit item{% endblock %}
+
+{% block content %}
+<h3 align="center">Edit {{ item.name }}</h3>
+<form method="POST" class="col-4 offset-md-4">
+    <label for="item_name">Name</label>
+    <input type="text" id="item_name" name="item_name" class="form-control mb-2" placeholder="New item" value="{{ item.name }}"/>
+    <label for="price">Price</label>    
+    <div class="input-group mb-2">
+        <span class="input-group-text">$</span>
+        <input type="text" id="price" name="price" class="form-control" placeholder="0.00" value="{{ item.price }}">
+    </div>
+    <label for="url">URL</label>
+    <input 
+        type="text" 
+        id="url" 
+        name="url" 
+        class="form-control mb-2" 
+        placeholder="Item URL" 
+        value={% if item.url %}"{{ item.url }}"{% else %}""{% endif %}/>
+    <label for="categories">Categories (press [Space] to add tag)</label>
+    <input type="text" id="categories" name="categories" style="display:none"/>
+    <div class="tag-box">
+        <ul class="border p-2 rounded" id="ul-tags">
+            {% for category in item.categories %}
+            <li>
+                <span class="badge text-bg-light mx-1">
+                    {{ category.name }}
+                    <button type="button" class="btn-transparent" onclick="removeCategory(this, '{{ category.name }}')">&times;</button>
+                </span>
+            </li>
+            {% endfor %}
+            <input class="form-control-tag mx-1" type="text" placeholder="Category" onkeypress="addCategory(event)" onkeyup="checkInput(event)">
+        </ul>
+    </div>
+    <br/>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+{% endblock %}

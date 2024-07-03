@@ -1,0 +1,24 @@
+.tag-box ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag-box ul li {
+    list-style: none;
+}
+
+.tag-box ul input {
+    border: none;
+    background: none;
+    width: 100px;
+}
+
+.tag-box ul input:focus {
+    outline: none;
+}
+
+.btn-transparent {
+    background: none;
+    color: black;
+    border: none;
+}
